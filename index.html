@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosario Aruta - Siti Web</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .logo-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        .logo {
+            max-width: 70%;
+            max-height: 70%;
+            filter: grayscale(100%) brightness(200%);
+        }
+        
+        .content {
+            z-index: 1;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin: 20px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 2rem;
+        }
+        
+        .link-card {
+            background: rgba(25, 25, 25, 0.8);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            background: rgba(40, 40, 40, 0.9);
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.5s ease;
+        }
+        
+        .link-card:hover .link-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .link-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .link-url {
+            font-size: 0.9rem;
+            color: #aaa;
+            word-break: break-all;
+        }
+        
+        /* Animazioni */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+        
+        /* Effetti particellari */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo di sfondo -->
+    <div class="logo-container">
+        <img src="https://via.placeholder.com/500x500/333333/ffffff?text=RA+Logo" alt="Logo" class="logo">
+    </div>
+    
+    <!-- Canvas per le particelle -->
+    <canvas class="particles"></canvas>
+    
+    <!-- Contenuto principale -->
+    <div class="content">
+        <h1 class="title">I Miei Siti Web</h1>
+        
+        <div class="links-container">
+            <!-- Link 1 -->
+            <a href="https://comprooro.rosarioaruta.com" class="link-card animate-fade-in">
+                <i class="fas fa-coins link-icon"></i>
+                <h3 class="link-title">Compro Oro</h3>
+                <p class="link-url">comprooro.rosarioaruta.com</p>
+            </a>
+            
+            <!-- Link 2 -->
+            <a href="https://casevacanze.rosarioaruta.com" class="link-card animate-fade-in delay-1">
+                <i class="fas fa-home link-icon"></i>
+                <h3 class="link-title">Case Vacanze</h3>
+                <p class="link-url">casevacanze.rosarioaruta.com</p>
+            </a>
+            
+            <!-- Link 3 -->
+            <a href="https://repuestonavales.rosarioaruta.com" class="link-card animate-fade-in delay-2">
+                <i class="fas fa-ship link-icon"></i>
+                <h3 class="link-title">Repuesto Navales</h3>
+                <p class="link-url">repuestonavales.rosarioaruta.com</p>
+            </a>
+            
+            <!-- Link 4 -->
+            <a href="https://esempio1.rosarioaruta.com" class="link-card animate-fade-in delay-3">
+                <i class="fas fa-store link-icon"></i>
+                <h3 class="link-title">Esempio 1</h3>
+                <p class="link-url">esempio1.rosarioaruta.com</p>
+            </a>
+            
+            <!-- Link 5 -->
+            <a href="https://esempio2.rosarioaruta.com" class="link-card animate-fade-in delay-4">
+                <i class="fas fa-blog link-icon"></i>
+                <h3 class="link-title">Esempio 2</h3>
+                <p class="link-url">esempio2.rosarioaruta.com</p>
+            </a>
+            
+            <!-- Link 6 -->
+            <a href="https://esempio3.rosarioaruta.com" class="link-card animate-fade-in delay-5">
+                <i class="fas fa-code link-icon"></i>
+                <h3 class="link-title">Esempio 3</h3>
+                <p class="link-url">esempio3.rosarioaruta.com</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- JavaScript per animazioni e particelle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inizializza le particelle
+            initParticles();
+            
+            // Aggiungi effetto di digitazione al titolo
+            const title = document.querySelector('.title');
+            const originalText = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            typeWriter();
+        });
+        
+        function initParticles() {
+            const canvas = document.querySelector('.particles');
+            const ctx = canvas.getContext('2d');
+            let particlesArray = [];
+            
+            // Imposta le dimensioni del canvas
+            function setCanvasSize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            setCanvasSize();
+            window.addEventListener('resize', function() {
+                setCanvasSize();
+            });
+            
+            // Classe Particella
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    if (this.x > canvas.width || this.x < 0) {
+                        this.speedX = -this.speedX;
+                    }
+                    if (this.y > canvas.height || this.y < 0) {
+                        this.speedY = -this.speedY;
+                    }
+                }
+                
+                draw() {
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            // Crea le particelle
+            function init() {
+                particlesArray = [];
+                const numberOfParticles = (canvas.height * canvas.width) / 9000;
+                
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+            
+            // Anima le particelle
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                
+                // Connetti le particelle vicine
+                connectParticles();
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Funzione per connettere le particelle vicine
+            function connectParticles() {
+                const maxDistance = 100;
+                for (let a = 0; a < particlesArray.length; a++) {
+                    for (let b = a; b < particlesArray.length; b++) {
+                        const dx = particlesArray[a].x - particlesArray[b].x;
+                        const dy = particlesArray[a].y - particlesArray[b].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < maxDistance) {
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/maxDistance})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            init();
+            animate();
+        }
+    </script>
+</body>
+</html>
