@@ -3,316 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rosario Aruta - Siti Web</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome per le icone -->
+    <title>Rosario Aruta - I Miei Siti</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            background-color: #121212;
+            background-color: #0a0a0a;
             color: #f8f9fa;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             overflow-x: hidden;
             position: relative;
         }
         
-        .logo-container {
+        /* Sfondo con logo sfocato */
+        .background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: -1;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: -1;
-            opacity: 0.15;
         }
         
-        .logo {
-            max-width: 70%;
-            max-height: 70%;
-            filter: grayscale(100%) brightness(200%);
-        }
-        
-        .content {
-            z-index: 1;
-            padding: 2rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            margin: 20px;
-        }
-        
-        .title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-        
-        .links-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 1200px;
-            margin-top: 2rem;
+            height: 100%;
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 100%);
+            opacity: 0.9;
         }
         
-        .link-card {
-            background: rgba(25, 25, 25, 0.8);
-            border-radius: 10px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .logo-blur {
+            width: 80%;
+            height: 80%;
+            background-image: url('https://placehold.co/600x600/333/white?text=RA');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: blur(12px) opacity(0.4);
+            position: absolute;
+            transform: scale(1.2);
+        }
+        
+        /* Contenuto principale */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin: 30px 0;
+            width: 100%;
+        }
+        
+        .title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* Griglia dei link */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        
+        .link-card {
+            background: rgba(25, 25, 25, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            color: inherit;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .link-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            background: rgba(40, 40, 40, 0.9);
-            text-decoration: none;
-            color: inherit;
+            transform: translateY(-5px);
+            background: rgba(40, 40, 40, 0.8);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
         
         .link-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.5s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
         
         .link-card:hover .link-icon {
-            transform: scale(1.2) rotate(10deg);
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(255, 215, 0, 0.2);
+        }
+        
+        .link-content {
+            flex: 1;
         }
         
         .link-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
             font-weight: 500;
+            margin-bottom: 5px;
         }
         
         .link-url {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #aaa;
             word-break: break-all;
         }
         
-        /* Animazioni */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Footer */
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+            width: 100%;
         }
         
-        .animate-fade-in {
-            animation: fadeIn 1s ease forwards;
+        /* Animazioni */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
         }
         
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
-        .delay-5 { animation-delay: 1s; }
+        .delay-5 { animation-delay: 1.0s; }
         
-        /* Effetti particellari */
-        .particles {
+        /* Effetti di luce */
+        .light-effect {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Logo di sfondo -->
-    <div class="logo-container">
-        <img src="https://via.placeholder.com/500x500/333333/ffffff?text=RA+Logo" alt="Logo" class="logo">
+    <!-- Sfondo con logo sfocato -->
+    <div class="background">
+        <div class="logo-blur"></div>
     </div>
     
-    <!-- Canvas per le particelle -->
-    <canvas class="particles"></canvas>
+    <!-- Effetti di luce dinamici -->
+    <div class="light-effect" id="light-effect"></div>
     
     <!-- Contenuto principale -->
-    <div class="content">
-        <h1 class="title">I Miei Siti Web</h1>
+    <div class="container">
+        <div class="header">
+            <h1 class="title animate">I Miei Siti</h1>
+            <p class="subtitle animate delay-1">Tutti i miei progetti e servizi online</p>
+        </div>
         
-        <div class="links-container">
+        <div class="links-grid">
             <!-- Link 1 -->
-            <a href="https://comprooro.rosarioaruta.com" class="link-card animate-fade-in">
-                <i class="fas fa-coins link-icon"></i>
-                <h3 class="link-title">Compro Oro</h3>
-                <p class="link-url">comprooro.rosarioaruta.com</p>
+            <a href="https://comprooro.rosarioaruta.com" class="link-card animate delay-1">
+                <div class="link-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="link-content">
+                    <h3 class="link-title">Compro Oro</h3>
+                    <p class="link-url">comprooro.rosarioaruta.com</p>
+                </div>
             </a>
             
             <!-- Link 2 -->
-            <a href="https://casevacanze.rosarioaruta.com" class="link-card animate-fade-in delay-1">
-                <i class="fas fa-home link-icon"></i>
-                <h3 class="link-title">Case Vacanze</h3>
-                <p class="link-url">casevacanze.rosarioaruta.com</p>
+            <a href="https://casevacanze.rosarioaruta.com" class="link-card animate delay-2">
+                <div class="link-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="link-content">
+                    <h3 class="link-title">Case Vacanze</h3>
+                    <p class="link-url">casevacanze.rosarioaruta.com</p>
+                </div>
             </a>
             
             <!-- Link 3 -->
-            <a href="https://repuestonavales.rosarioaruta.com" class="link-card animate-fade-in delay-2">
-                <i class="fas fa-ship link-icon"></i>
-                <h3 class="link-title">Repuesto Navales</h3>
-                <p class="link-url">repuestonavales.rosarioaruta.com</p>
+            <a href="https://repuestonavales.rosarioaruta.com" class="link-card animate delay-3">
+                <div class="link-icon">
+                    <i class="fas fa-ship"></i>
+                </div>
+                <div class="link-content">
+                    <h3 class="link-title">Repuesto Navales</h3>
+                    <p class="link-url">repuestonavales.rosarioaruta.com</p>
+                </div>
             </a>
             
             <!-- Link 4 -->
-            <a href="https://esempio1.rosarioaruta.com" class="link-card animate-fade-in delay-3">
-                <i class="fas fa-store link-icon"></i>
-                <h3 class="link-title">Esempio 1</h3>
-                <p class="link-url">esempio1.rosarioaruta.com</p>
+            <a href="https://esempio.rosarioaruta.com" class="link-card animate delay-4">
+                <div class="link-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="link-content">
+                    <h3 class="link-title">Esempio 1</h3>
+                    <p class="link-url">esempio.rosarioaruta.com</p>
+                </div>
             </a>
             
             <!-- Link 5 -->
-            <a href="https://esempio2.rosarioaruta.com" class="link-card animate-fade-in delay-4">
-                <i class="fas fa-blog link-icon"></i>
-                <h3 class="link-title">Esempio 2</h3>
-                <p class="link-url">esempio2.rosarioaruta.com</p>
+            <a href="https://altro.rosarioaruta.com" class="link-card animate delay-5">
+                <div class="link-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="link-content">
+                    <h3 class="link-title">Altro Progetto</h3>
+                    <p class="link-url">altro.rosarioaruta.com</p>
+                </div>
             </a>
-            
-            <!-- Link 6 -->
-            <a href="https://esempio3.rosarioaruta.com" class="link-card animate-fade-in delay-5">
-                <i class="fas fa-code link-icon"></i>
-                <h3 class="link-title">Esempio 3</h3>
-                <p class="link-url">esempio3.rosarioaruta.com</p>
-            </a>
+        </div>
+        
+        <div class="footer animate delay-5">
+            <p>© 2023 Rosario Aruta. Tutti i diritti riservati.</p>
         </div>
     </div>
 
-    <!-- JavaScript per animazioni e particelle -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Inizializza le particelle
-            initParticles();
+            // Effetto luce che segue il movimento del mouse/touch
+            const lightEffect = document.getElementById('light-effect');
             
-            // Aggiungi effetto di digitazione al titolo
-            const title = document.querySelector('.title');
-            const originalText = title.textContent;
-            title.textContent = '';
-            let i = 0;
-            
-            function typeWriter() {
-                if (i < originalText.length) {
-                    title.textContent += originalText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 100);
-                }
-            }
-            
-            typeWriter();
-        });
-        
-        function initParticles() {
-            const canvas = document.querySelector('.particles');
-            const ctx = canvas.getContext('2d');
-            let particlesArray = [];
-            
-            // Imposta le dimensioni del canvas
-            function setCanvasSize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            
-            setCanvasSize();
-            window.addEventListener('resize', function() {
-                setCanvasSize();
+            document.addEventListener('mousemove', (e) => {
+                moveLight(e.clientX, e.clientY);
             });
             
-            // Classe Particella
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 2 + 0.5;
-                    this.speedX = Math.random() * 1 - 0.5;
-                    this.speedY = Math.random() * 1 - 0.5;
-                }
-                
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    
-                    if (this.x > canvas.width || this.x < 0) {
-                        this.speedX = -this.speedX;
-                    }
-                    if (this.y > canvas.height || this.y < 0) {
-                        this.speedY = -this.speedY;
-                    }
-                }
-                
-                draw() {
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
+            document.addEventListener('touchmove', (e) => {
+                moveLight(e.touches[0].clientX, e.touches[0].clientY);
+            });
+            
+            function moveLight(x, y) {
+                lightEffect.style.left = (x - 100) + 'px';
+                lightEffect.style.top = (y - 100) + 'px';
             }
             
-            // Crea le particelle
-            function init() {
-                particlesArray = [];
-                const numberOfParticles = (canvas.height * canvas.width) / 9000;
-                
-                for (let i = 0; i < numberOfParticles; i++) {
-                    particlesArray.push(new Particle());
-                }
-            }
+            // Animazione di caricamento per gli elementi
+            const animatedElements = document.querySelectorAll('.animate');
             
-            // Anima le particelle
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                for (let i = 0; i < particlesArray.length; i++) {
-                    particlesArray[i].update();
-                    particlesArray[i].draw();
-                }
-                
-                // Connetti le particelle vicine
-                connectParticles();
-                
-                requestAnimationFrame(animate);
-            }
-            
-            // Funzione per connettere le particelle vicine
-            function connectParticles() {
-                const maxDistance = 100;
-                for (let a = 0; a < particlesArray.length; a++) {
-                    for (let b = a; b < particlesArray.length; b++) {
-                        const dx = particlesArray[a].x - particlesArray[b].x;
-                        const dy = particlesArray[a].y - particlesArray[b].y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
+            // Intersection Observer per animare gli elementi quando entrano nella viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const delay = element.classList.contains('delay-1') ? 200 :
+                                    element.classList.contains('delay-2') ? 400 :
+                                    element.classList.contains('delay-3') ? 600 :
+                                    element.classList.contains('delay-4') ? 800 :
+                                    element.classList.contains('delay-5') ? 1000 : 0;
                         
-                        if (distance < maxDistance) {
-                            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/maxDistance})`;
-                            ctx.lineWidth = 1;
-                            ctx.beginPath();
-                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                            ctx.stroke();
-                        }
+                        setTimeout(() => {
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                        }, delay);
+                        
+                        observer.unobserve(element);
                     }
-                }
-            }
+                });
+            }, { threshold: 0.1 });
             
-            init();
-            animate();
-        }
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Effetto di tilt sulle card al movimento del device
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', (e) => {
+                    const tilt = e.gamma / 15; // gamma è l'inclinazione sinistra-destra
+                    const cards = document.querySelectorAll('.link-card');
+                    
+                    cards.forEach(card => {
+                        card.style.transform = `rotateY(${tilt}deg) translateZ(0)`;
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
