@@ -44,7 +44,7 @@ body {
 .logo-blur {
     width: 80%;
     height: 80%;
-    background-image: url('https://placehold.co/600x600/333/white?text=RA');
+    background-image: url('../Img/Logo.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
